@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-habit-list',
@@ -11,29 +11,27 @@ import { Component, OnInit } from '@angular/core';
       ></app-habit-item>
     </ul>
   `,
-  styles: []
+  styles: [],
 })
-export class HabitListComponent implements OnInit {
+export class HabitListComponent {
   habits = [
     {
       id: 1,
-      title: 'Check in with parents once a week'
+      title: 'Check in with parents once a week',
     },
     {
       id: 2,
-      title: 'Record 2 videos per day'
+      title: 'Record 2 videos per day',
     },
     {
       id: 3,
-      title: 'Work on side project 5 hours/week'
+      title: 'Work on side project 5 hours/week',
     },
     {
       id: 4,
-      title: 'Write for 20 minutes a day'
-    }
+      title: 'Write for 20 minutes a day',
+    },
   ];
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

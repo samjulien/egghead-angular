@@ -9,6 +9,6 @@ import { HabitItemComponent } from './habit-item/habit-item.component';
   declarations: [AppComponent, HabitListComponent, HabitItemComponent],
   imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
