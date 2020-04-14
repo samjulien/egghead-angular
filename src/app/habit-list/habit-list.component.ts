@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-habit-list',
   template: `
     <h2>Habits</h2>
-    <app-habit-form></app-habit-form>
+    <app-habit-form (addHabit)="onAddHabit($event)"></app-habit-form>
     <ul>
       <app-habit-item
         *ngFor="let habit of habits"
@@ -15,7 +15,6 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class HabitListComponent {
-  habitForm;
   habits = [
     {
       id: 1,
@@ -37,10 +36,9 @@ export class HabitListComponent {
 
   constructor() {}
 
-  onSubmit(newHabit) {
+  onAddHabit(newHabit) {
     const id = this.habits.length + 1;
     newHabit.id = id;
     this.habits.push(newHabit);
-    this.habitForm.reset();
   }
 }
