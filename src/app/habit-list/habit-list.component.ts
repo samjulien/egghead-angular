@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-habit-list',
   template: `
     <h2>Habits</h2>
+    <form [formGroup]="habitForm" (ngSubmit)="onSubmit(habitForm.value)">
+      <input type="text" placeholder="Add habit" formControlName="title" />
+      <button type="submit">Add</button>
+    </form>
     <ul>
       <app-habit-item
         *ngFor="let habit of habits"
@@ -14,6 +19,7 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class HabitListComponent {
+  habitForm;
   habits = [
     {
       id: 1,
@@ -33,5 +39,16 @@ export class HabitListComponent {
     },
   ];
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {
+    this.habitForm = this.formBuilder.group({
+      title: '',
+    });
+  }
+
+  onSubmit(newHabit) {
+    const id = this.habits.length + 1;
+    newHabit.id = id;
+    this.habits.push(newHabit);
+    this.habitForm.reset();
+  }
 }
