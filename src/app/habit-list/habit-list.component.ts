@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HabitService } from '../habit.service';
 
 @Component({
   selector: 'app-habit-list',
@@ -7,38 +9,23 @@ import { Component } from '@angular/core';
     <app-habit-form (addHabit)="onAddHabit($event)"></app-habit-form>
     <ul>
       <app-habit-item
-        *ngFor="let habit of habits"
+        *ngFor="let habit of habits | async"
         [habit]="habit"
       ></app-habit-item>
     </ul>
   `,
   styles: [],
 })
-export class HabitListComponent {
-  habits = [
-    {
-      id: 1,
-      title: 'Check in with parents once a week',
-    },
-    {
-      id: 2,
-      title: 'Record 2 videos per day',
-    },
-    {
-      id: 3,
-      title: 'Work on side project 5 hours/week',
-    },
-    {
-      id: 4,
-      title: 'Write for 20 minutes a day',
-    },
-  ];
+export class HabitListComponent implements OnInit {
+  habits: Observable<any>;
 
-  constructor() {}
+  constructor(private habitService: HabitService) {}
+
+  ngOnInit(): void {
+    this.habits = this.habitService.getHabits();
+  }
 
   onAddHabit(newHabit) {
-    const id = this.habits.length + 1;
-    newHabit.id = id;
-    this.habits.push(newHabit);
+    this.habitService.addHabit(newHabit);
   }
 }
