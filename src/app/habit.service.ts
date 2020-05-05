@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
+import { Habit } from './habit';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HabitService {
-  habits = [
+  habits: Habit[] = [
     {
       id: 1,
       title: 'Check in with parents once a week',
@@ -30,7 +31,7 @@ export class HabitService {
 
   constructor() {}
 
-  getHabits(): Observable<any> {
+  getHabits(): Observable<Habit[]> {
     return of(this.habits);
   }
 
