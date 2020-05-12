@@ -9,7 +9,16 @@ import { FormBuilder } from '@angular/forms';
       <button type="submit">Add</button>
     </form>
   `,
-  styles: [],
+  styles: [
+    `
+      button {
+        background-color: blue;
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    `,
+  ],
 })
 export class HabitFormComponent implements OnInit {
   habitForm: any;

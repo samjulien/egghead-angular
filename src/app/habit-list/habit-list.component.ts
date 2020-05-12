@@ -7,7 +7,7 @@ import { Habit } from '../habit';
 @Component({
   selector: 'app-habit-list',
   template: `
-    <h2>Habits</h2>
+    <h1>Habits</h1>
     <app-habit-form (addHabit)="onAddHabit($event)"></app-habit-form>
     <ul>
       <app-habit-item
