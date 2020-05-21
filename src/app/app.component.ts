@@ -11,5 +11,5 @@ import { Component } from '@angular/core';
   styles: ['h1 { color: blue }'],
 })
 export class AppComponent {
-  title = 'Habit Tracker';
+  title = 'Habit Tracker 💪';
 }

@@ -6,15 +6,12 @@ import { FormBuilder } from '@angular/forms';
   template: `
     <form [formGroup]="habitForm" (ngSubmit)="onSubmit(habitForm.value)">
       <input type="text" placeholder="Add habit" formControlName="title" />
-      <button type="submit">Add</button>
+      <button type="submit" class="blue-button">Add</button>
     </form>
   `,
   styles: [
     `
-      button {
-        background-color: blue;
-        color: white;
-        border-radius: 5px;
+      input {
         font-size: 16px;
       }
     `,

@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { HabitService } from '../habit.service';
 import { Habit } from '../habit';
 
 @Component({
   selector: 'app-habit-list',
   template: `
-    <h1>Habits</h1>
     <app-habit-form (addHabit)="onAddHabit($event)"></app-habit-form>
     <ul>
       <app-habit-item
@@ -24,17 +23,10 @@ export class HabitListComponent implements OnInit {
   constructor(private habitService: HabitService) {}
 
   ngOnInit(): void {
-    this.habits = this.habitService.getHabits().pipe(
-      map((habits) => {
-        return habits.map((habit) => {
-          habit.streak = habit.count > 5 ? true : false;
-          return habit;
-        });
-      })
-    );
+    this.habits = this.habitService.getHabits();
   }
 
-  onAddHabit(newHabit) {
-    this.habitService.addHabit(newHabit);
+  onAddHabit(newHabit: Habit) {
+    this.habitService.addHabit(newHabit).subscribe();
   }
 }
