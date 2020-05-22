@@ -23,7 +23,9 @@ export class HabitListComponent implements OnInit {
   constructor(private habitService: HabitService) {}
 
   ngOnInit(): void {
-    this.habits = this.habitService.getHabits();
+    this.habits = this.habitService.refetch.pipe(
+      switchMap(() => this.habitService.getHabits())
+    );
   }
 
   onAddHabit(newHabit: Habit) {
